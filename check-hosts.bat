@@ -8,16 +8,16 @@
 :: Usage: check-hosts.bat hosts.cfg
 
 echo.
-echo Checking for CAAS components on LAN ...
+echo Checking for network hosts on LAN per %1
 echo.
 
-echo Network Address
-echo ---------------
+echo Network Address(s)
+echo ------------------
 echo.
 
 set ip_address_string="IPv4 Address"
 for /f "usebackq tokens=2 delims=:" %%f in (`ipconfig ^| findstr /c:%ip_address_string%`) do (
-    echo Your IP Address is: %%f
+    echo Network Address: %%f
 )
 
 echo.
