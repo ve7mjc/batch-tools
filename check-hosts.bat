@@ -1,7 +1,11 @@
 @echo off
 
-:: CURRIE; Script to determine if CAAS components are able to communicate
+:: CURRIE, Matthew
 :: 14 Jan 2016
+:: Check network host status from list
+:: Load a comma delimited list of network hosts to check with ping
+:: Format ip_address,description with spaces
+:: Usage: check-hosts.bat hosts.cfg
 
 echo.
 echo Checking for CAAS components on LAN ...
@@ -21,7 +25,7 @@ echo Network Hosts
 echo -------------
 echo.
 
-for /f "tokens=*" %%i in (hosts.cfg) do (
+for /f "tokens=*" %%i in (%1) do (
 	:: %%i is string
 	for /f "delims=, tokens=1,2" %%a in ("%%i") do (
 		%SystemRoot%\system32\ping.exe -n 1 %%a >nul
@@ -34,6 +38,5 @@ for /f "tokens=*" %%i in (hosts.cfg) do (
 	)
 )
 
-echo.
 echo.
 pause
